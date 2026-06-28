@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gdy C++ Style"
+  short_description: "Use gdy-style OJ C++ and Chinese writeups"
+  default_prompt: "Use $gdy-cpp-style to write this OJ solution in my usual C++ style."
