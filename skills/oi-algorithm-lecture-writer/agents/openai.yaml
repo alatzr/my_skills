@@ -1,0 +1,4 @@
+interface:
+  display_name: "OI 算法讲义写作"
+  short_description: "编写中文信息学竞赛算法知识点讲义"
+  default_prompt: "使用 $oi-algorithm-lecture-writer 编写一份中文信息学竞赛算法知识点讲义。"
