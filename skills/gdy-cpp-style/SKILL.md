@@ -1,32 +1,32 @@
 ---
 name: gdy-cpp-style
-description: "Personal OJ solution style for user gdy. Use when Codex writes competitive-programming code, OJ submissions, Chinese problem solutions, or algorithm explanations that should match gdy's historical submissions: mainly C++14/C++11(O2), concise Chinese writeups, short variable names, global arrays, simple functions, and pragmatic contest templates."
+description: "gdy 的个人 OJ 代码与题解风格。用于编写竞赛题代码、OJ 提交、中文题解、算法讲解时贴近 gdy 历史提交习惯：以 C++14/C++11(O2) 为主，偏短变量名、全局数组、直接实现、少封装、中文短注释和训练题风格说明。"
 ---
 
-# Gdy C++ Style
+# gdy C++ 代码风格
 
-## Core Goal
+## 核心目标
 
-Write OJ code and题解 like gdy: concise, contest-oriented C++, easy to paste into Hydro/AtCoder/USACO-style judges, with short Chinese explanations and minimal abstraction.
+按 gdy 平时在 OJ 上提交代码和写题解的习惯输出：简洁、偏竞赛实战、可直接粘贴到 Hydro/AtCoder/USACO 类评测系统，说明文字用中文，代码少包装、重实现。
 
-Use this style unless the user explicitly asks for another language/style or the problem requires a library/API style solution.
+除非用户明确要求其他语言或其他风格，否则写 OJ 代码和题解时优先使用本风格。
 
-## Code Defaults
+## 代码默认习惯
 
-- Prefer C++14-compatible code.
-- Start most submissions with:
+- 默认使用 C++14 兼容写法。
+- 大多数提交以如下模板开头：
 
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
 ```
 
-- Use `#include <bits/stdc++.h>` with a space only when the surrounding code already uses that spacing.
-- Prefer `#define ll long long` for simple long-long needs. `using ll = long long;` is acceptable in more modern-looking AtCoder-style snippets.
-- Use `const int N = ... + 10;` for limits, usually global. Common forms: `1e5 + 10`, `2e5 + 10`, `1e6 + 10`, `1010`, `510`.
-- Use global arrays and containers for contest data:
-  `a[N]`, `b[N]`, `c[N]`, `dp[N]`, `f[N]`, `g[N]`, `st[N]`, `vis[N]`, `dist[N]`, `ans[N]`, `vector<int> adj[N]`.
-- Prefer simple `int main()` with braces on the next line:
+- 只有在已有代码已经使用空格版 include 时，才写成 `#include <bits/stdc++.h>`。
+- 需要 long long 时，简单题优先写 `#define ll long long`；偏 AtCoder 风格或已有代码较现代时可用 `using ll = long long;`。
+- 数据范围已知时优先写全局常量：`const int N = ... + 10;`。常见形式有 `1e5 + 10`、`2e5 + 10`、`1e6 + 10`、`1010`、`510`。
+- 竞赛数据结构优先全局声明：
+  `a[N]`、`b[N]`、`c[N]`、`dp[N]`、`f[N]`、`g[N]`、`st[N]`、`vis[N]`、`dist[N]`、`ans[N]`、`vector<int> adj[N]`。
+- 普通单测题优先写 `int main()`，左花括号换行：
 
 ```cpp
 int main()
@@ -36,58 +36,58 @@ int main()
 }
 ```
 
-- Use TAB indentation when writing fresh code. If editing a file that already uses 4 spaces, keep that file's indentation.
-- Do not overuse classes, namespaces, lambdas, or generic templates. Add helper functions only when they clarify a standard algorithm.
+- 新写代码优先用 TAB 缩进；如果是在已有 4 空格代码里修改，则保持原文件缩进。
+- 不要过度使用类、命名空间、lambda、泛型模板。只有标准算法拆出来更清楚时，才写辅助函数。
 
-## Input And Output
+## 输入输出
 
-- Default to `cin` / `cout`.
-- Do not add fast I/O by default for small/medium problems. Add it only when input is large:
+- 默认使用 `cin` / `cout`。
+- 小中等数据量不要主动加快速 IO；输入量大时再加：
 
 ```cpp
 ios::sync_with_stdio(false);
 cin.tie(0);
 ```
 
-- Use `scanf` / `printf` only when matching an existing scanf-style solution or when performance/formatting is simpler.
-- Print `endl` when the style benefits from clarity. For tight loops, prefer `'\n'`.
-- For file I/O problems, write explicit `freopen` near the start of `main`:
+- `scanf` / `printf` 只在已有代码就是这种风格，或格式/性能确实更方便时使用。
+- 输出换行可以用 `endl`；循环大量输出时优先用 `'\n'`。
+- 文件输入输出题在 `main` 开头显式写：
 
 ```cpp
 freopen("xxx.in", "r", stdin);
 freopen("xxx.out", "w", stdout);
 ```
 
-- If many file-I/O solutions are expected, this macro is in-style:
+- 如果需要统一文件 IO，可使用此风格内宏：
 
 ```cpp
 #define io(x); freopen(x".in", "r", stdin), freopen(x".out", "w", stdout);
 ```
 
-## Naming
+## 命名习惯
 
-- Use short variable names in loops and formulas: `i`, `j`, `k`, `n`, `m`, `x`, `y`, `l`, `r`, `mid`, `sum`, `ans`, `cnt`, `res`.
-- Use conventional algorithm names: `dfs`, `bfs`, `dijkstra`, `find`, `add`, `cmp`, `solve`.
-- Use `Node` for small structs and fields like `x`, `y`, `z`, `val`, `d`, `id`.
-- Use `PII` or `pair<int,int>` for pair-heavy code. Macros `#define x first` and `#define y second` are acceptable for pair sorting/code brevity.
-- Prefer 1-indexing for arrays unless the problem is naturally 0-indexed or uses C++ STL vectors.
+- 循环和公式里使用短变量名：`i`、`j`、`k`、`n`、`m`、`x`、`y`、`l`、`r`、`mid`、`sum`、`ans`、`cnt`、`res`。
+- 算法函数用常见名字：`dfs`、`bfs`、`dijkstra`、`find`、`add`、`cmp`、`solve`。
+- 小结构体优先命名为 `Node`，字段常用 `x`、`y`、`z`、`val`、`d`、`id`。
+- pair 相关可用 `PII` 或 `pair<int,int>`；排序或图论代码中可接受 `#define x first`、`#define y second`。
+- 数组默认 1 下标；当题目天然 0 下标或使用 STL vector 更自然时再用 0 下标。
 
-## Algorithms And Data Structures
+## 算法实现偏好
 
-- Implement standard algorithms directly and visibly.
-- Prefer arrays over vectors when constraints are known.
-- Use `vector<int> adj[N]` or edge arrays for graphs.
-- For BFS on grids, use `dx/dy` arrays and either `queue<Node>` or a manual queue array.
-- For DFS, use a simple recursive function unless recursion depth is risky.
-- For DP, use `dp`, `f`, `g`; initialize with `memset(dp, 0x3f, sizeof dp)` for INF or `memset(..., 0, ...)` for zero.
-- Use `const int INF = 0x3f3f3f3f;` or `const int INF = 1e9;`.
-- Use `sort(p+1, p+1+n, cmp)` for global arrays and `sort(v.begin(), v.end())` for vectors.
-- Keep implementation compact; avoid explanatory helper wrappers that are not needed for the solution.
+- 标准算法直接写出来，不要藏在复杂封装里。
+- 已知范围时优先数组，不优先 vector。
+- 图论用 `vector<int> adj[N]` 或链式前向星/边数组。
+- 网格 BFS 使用 `dx/dy` 数组，队列可用 `queue<Node>`，也可以用手写数组队列。
+- DFS 默认递归实现；递归深度风险明显时再改迭代或说明风险。
+- DP 常用 `dp`、`f`、`g`。初始化 INF 用 `memset(dp, 0x3f, sizeof dp)`，清零用 `memset(..., 0, ...)`。
+- INF 常写 `const int INF = 0x3f3f3f3f;` 或 `const int INF = 1e9;`。
+- 全局数组排序写 `sort(p+1, p+1+n, cmp)`；vector 排序写 `sort(v.begin(), v.end())`。
+- 代码整体保持紧凑，不为“看起来高级”额外加包装。
 
-## Comments
+## 注释风格
 
-- Use short Chinese comments for non-obvious state meanings or algorithm steps.
-- Good comment style:
+- 只在状态含义、关键转移、枚举对象等不明显处加中文短注释。
+- 推荐注释形态：
 
 ```cpp
 int pre[N]; // 前缀和
@@ -95,30 +95,30 @@ int pre[N]; // 前缀和
 // 枚举领头人的位置
 ```
 
-- Avoid verbose line-by-line comments. Do not explain syntax.
-- In code, comments should usually be one short phrase, not full tutorial paragraphs.
+- 不要逐行解释语法。
+- 代码内注释通常是一句话或一个短语，不写长篇教程。
 
-## Problem Solution Writeups
+## 题解写法
 
-When writing题解, use concise Chinese and a practical structure:
+写中文题解时保持训练题风格，结构简洁直接：
 
 1. `思路`
-2. `状态表示` / `状态转移` when DP is involved
+2. DP 题加 `状态表示` / `状态转移`
 3. `实现细节`
 4. `复杂度`
 5. `代码`
 
-Keep prose close to the code. Prefer direct statements such as:
+说明尽量贴近代码，使用直接表达：
 
 - `先排序，然后从左到右贪心。`
 - `dp[i] 表示前 i 个物品能得到的最大值。`
 - `用队列做 BFS，第一次到达就是最短路。`
 
-Do not write a polished editorial unless asked. Keep the explanation suitable for students reading a training OJ solution.
+除非用户要求正式题解，不要写成很长的官方 editorial。目标是让训练 OJ 的学生能快速看懂。
 
-## Fresh Code Template
+## 常用代码模板
 
-For ordinary single-test problems:
+普通单测题：
 
 ```cpp
 #include<bits/stdc++.h>
@@ -142,7 +142,7 @@ int main()
 }
 ```
 
-For multi-test problems, use `solve()`:
+多测题：
 
 ```cpp
 #include<bits/stdc++.h>
@@ -165,10 +165,10 @@ int main()
 }
 ```
 
-## When To Deviate
+## 可以偏离的情况
 
-- Use C++17 only if the judge/problem requires it or the user asks.
-- Use vectors/maps when limits are dynamic or coordinate values are sparse.
-- Add fast I/O for large input.
-- Avoid `#define int long long` unless overflow is pervasive and the solution is simpler that way.
-- Preserve existing file style when editing user-provided code, even if it differs from these defaults.
+- 题目或评测环境要求 C++17 时再使用 C++17。
+- 坐标稀疏、数据范围动态、需要离散化时，可以用 vector/map。
+- 输入非常大时加快速 IO。
+- 不要默认 `#define int long long`，只有整题都容易溢出且这样更简洁时再用。
+- 修改用户已有代码时，优先保持原文件风格，而不是强行套模板。
