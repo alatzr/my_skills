@@ -1,0 +1,9 @@
+{
+  "api_key": "填写你的 API Key",
+  "base_url": "填写 OpenAI 兼容 base_url，例如 https://api.openai.com/v1",
+  "model": "填写图片模型名",
+  "size": "1536x1024",
+  "quality": "medium",
+  "output_format": "png",
+  "response_format": "b64_json"
+}

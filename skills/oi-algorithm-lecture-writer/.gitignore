@@ -1,0 +1,3 @@
+config/image_api.local.json
+__pycache__/
+*.pyc
