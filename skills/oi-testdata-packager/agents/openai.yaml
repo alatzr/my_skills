@@ -1,0 +1,4 @@
+interface:
+  display_name: "OI Testdata Packager"
+  short_description: "Build OI judgedata zip packs"
+  default_prompt: "Use $oi-testdata-packager to generate an OI-style judgedata zip package from a known problem statement."
